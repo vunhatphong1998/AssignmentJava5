@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+       layout:decorate="~{layouts/adminStaff.html}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1> Danh sách Nhân Viên</h1>
+<div layout:fragment="content"  class="offset-0	 col-8">
+<table  class="table">
+<thead class="thead-dark">
+	<tr>
+		<th scope="col">Staff ID</th>
+		<th scope="col">Name</th>
+		<th scope="col">Birthday</th>
+		<th scope="col">Email</th>
+		<th scope="col">Salary</th>
+		<th scope="col">Phone</th>
+		<th scope="col">Notes</th>
+		<th scope="col">Photo</th>
+		<th scope="col">Department ID</th>
+		<th scope="col">&nbsp;</th>
+	
+	</tr>
+	</thead>
+	<tbody>
+	<tr th:each="staff : ${staffs}">
+		<th scope="row" th:text="${staff.id}"></th>
+		<td th:text="${staff.name}">></td>
+		<td th:text="${staff.birthday}">></td>
+		<td th:text="${staff.email}">></td>
+		<td th:text="${staff.luong}">></td>
+		<td th:text="${staff.phone}">></td>
+		<td th:text="${staff.notes}">></td>
+		<td> 
+		<img th:src="@{'/getimage/' + ${staff.id}}" th:alt="${staff.photo}" width="100" />
+		</td>
+		<td th:text="${staff.depart.name}">></td>
+		<td>
+			<a th:href="@{'/staffs/edit/' + ${staff.id}} ">Edit</a> |
+			<a th:href="@{'/staffs/delete/' + ${staff.id}}">Delete</a>
+		</td>
+	</tr>
+ </tbody>
+</table>
+</div>
+</body>
+</html>

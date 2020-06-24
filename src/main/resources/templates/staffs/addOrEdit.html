@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/adminStaff.html}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div th:if ="${message != null}">
+    <span th:text="${message}"> </span>
+</div>
+
+	<div layout:fragment="content" class="offset-2 col-8">
+	
+		<form th:action="@{/staffs/saveOrUpdate}" th:object="${staffDto}" method="post" enctype="multipart/form-data">
+		
+		
+Department: 
+<select th:field="*{departId}">
+	<option th:each="depart : ${departs}" 
+		th:value="${depart.id}" 
+		th:text="${depart.name}"> </option>
+		
+</select> <br />
+<span th:if ="${#fields.hasErrors('departId')}" th:errors="*{departId}">Empty Firstname </span> <br />
+
+Name:
+<input type="text" th:field="*{name}" /> <br />
+<span th:if ="${#fields.hasErrors('name')}" th:errors="*{name}">Empty Firstname </span> <br />
+
+Birthday:
+<input type="text" th:field="*{birthday}" /> <br />
+<span th:if ="${#fields.hasErrors('birthday')}" th:errors="*{birthday}">Empty Firstname </span> <br />
+
+Email:	
+<input type="text" th:field="*{email}" /> <br />
+<span th:if ="${#fields.hasErrors('email')}" th:errors="*{email}">Empty Firstname </span> <br />
+
+Salary:
+<input type="text" th:field="*{luong}" /> <br /> <br />
+
+
+Phone Number:
+<input type="text" th:field="*{phone}" /> <br /> <br />
+
+Notes:
+<input type="text" th:field="*{notes}" /> <br /> <br />
+
+Photo:
+<input type="file" th:field="*{image}" /> <br /> <br />
+<span th:if ="${#fields.hasErrors('image')}" th:errors="*{image}">Empty Firstname </span> <br />
+
+<input type="submit" value="Add" th:if ="${id <= 0}" />
+<input type="submit" value="Update" th:if ="${id > 0}" />
+
+
+<!-- <!-- <div class="input-group input-group-sm mb-3">
+				<div class="input-group-prepend"  >
+					<span class="input-group-text">Department</span> 
+					
+					<select	th:field=*{departId}>
+						<option th:each="depart : ${departs}" th:value="${depart.id}"
+							th:text="${depart.name}"></option>
+					</select>
+
+
+				</div>
+			</div>
+			<div class="input-group input-group-sm mb-3" >
+				<div class="input-group-prepend">
+					<span class="input-group-text" id="inputGroup-sizing-sm">Name</span>
+				</div>
+				<input type="text" class="form-control" aria-label="Small"
+					aria-describedby="inputGroup-sizing-sm" th:field="*{name}">
+			</div>
+
+			<div class="input-group input-group-sm mb-3">
+				<div class="input-group-prepend">
+					<span class="input-group-text" id="inputGroup-sizing-sm">Birthday</span>
+				</div>
+				<input type="text" class="form-control" aria-label="Small"
+					aria-describedby="inputGroup-sizing-sm" th:field="*{birthday}">
+			</div>
+
+			<div class="input-group input-group-sm mb-3" >
+				<div class="input-group-prepend">
+					<span class="input-group-text" id="inputGroup-sizing-sm">Email</span>
+				</div>
+				<input type="text" class="form-control" aria-label="Small"
+					aria-describedby="inputGroup-sizing-sm" th:field="*{email}">
+			</div>
+
+			<div class="input-group input-group-sm mb-3" >
+				<div class="input-group-prepend">
+					<span class="input-group-text" id="inputGroup-sizing-sm">Salary</span>
+				</div>
+				<input type="text" class="form-control" aria-label="Small"
+					aria-describedby="inputGroup-sizing-sm" th:field="*{luong}">
+			</div>
+
+			<div class="input-group input-group-sm mb-3">
+				<div class="input-group-prepend">
+					<span class="input-group-text" id="inputGroup-sizing-sm">Phone
+						Number</span>
+				</div>
+				<input type="text" class="form-control" aria-label="Small"
+					aria-describedby="inputGroup-sizing-sm" th:field="*{phone}">
+			</div>
+
+			<div class="input-group input-group-sm mb-3">
+				<div class="input-group-prepend">
+					<span class="input-group-text" id="inputGroup-sizing-sm">Notes</span>
+				</div>
+				<input type="text" class="form-control" aria-label="Small"
+					aria-describedby="inputGroup-sizing-sm" th:field="*{notes}">
+			</div>
+
+			<div class="input-group input-group-sm mb-3">
+				<div class="input-group-prepend">
+					<span class="input-group-text" id="inputGroup-sizing-sm">Photo</span>
+				</div>
+				<input type="file" class="form-control" aria-label="Small"
+					aria-describedby="inputGroup-sizing-sm" th:field="*{image}">
+			</div>
+
+			
+			<input type="submit" value="Add" th:if="${id <= 0}" class="btn btn-outline-primary" /> 
+			<input type="submit"value="Update" th:if="${id>0}" class="btn btn-outline-primary" /> --> -->
+
+		</form>
+		
+		
+		<hr />
+		<h4>Errors: </h4>
+		<ul th:if="${#fields.hasErrors('${staffDto.*}')}">
+			<li th:each="err : ${#fields.errors('${staffDto.*}')}" th:text ="${err}">
+			Input is incorrect</li>
+		</ul>	 
+		 
+		
+		
+		
+	</div>
+</body>
+</html>

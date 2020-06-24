@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/adminDepart.html}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div layout:fragment="content" class="offset-2 col-8">
+
+		<table class="table">
+			<thead class="thead-dark">
+				<tr>
+					<th scope="col">Department ID</th>
+					<th scope="col">Name</th>
+					<th scope="col">&nbsp;</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr>
+				<tr th:each="item : ${departs}">
+					<th scope="row" th:text="${item.id}"></th>
+
+					<td th:text="${item.name}"></td>
+
+
+					<td><a th:href="@{'/departs/edit/' + ${item.id}}">Edit</a> | 
+					<a th:href="@{'/departs/delete/' + ${item.id}}">Delete</a></td>
+						
+				</tr>
+			</tbody>
+		</table>
+
+	</div>
+
+
+
+</body>
+</html>
